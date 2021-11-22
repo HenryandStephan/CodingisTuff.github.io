@@ -171,10 +171,14 @@ loader.load(
 				earthMesh.position.x =  trig2['r'] * trig2['x'];
    				earthMesh.position.y =  trig2['r'] * trig2['y'];
    				earthMesh.position.z =  trig2['r'] * trig2['z'];
+				
+				if( stephan ){
 				stephan.rotation.y += 0.001;
-				stephan.rotation.x += 0.0002;
+				stephan.rotation.x += 0.0002;}
+				if (henzo) {
 				henzo.rotation.y += 0.002;
-				henzo.rotation.x += 0.002;
+				henzo.rotation.x += 0.002;}
+
 
 				controls.update ();
 
