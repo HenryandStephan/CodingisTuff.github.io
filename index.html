@@ -3,11 +3,16 @@
 	<head>
 		<title>HENRY AND STEPHANNNN</title>
 		<meta charset="utf-8">
-		<style> 
-		body { margin: 0; }
-		</style>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="style.css">
 		</head>
 <body>
+	<div class="container">
+		<div class="buttons">
+			<a href="#" class="btn-1">Do not press</a></div>
+	</div>
 	<script type="module">
 			import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
 			import {OrbitControls} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js';
@@ -68,7 +73,7 @@
     const material = new THREE.MeshStandardMaterial({
         color: 0xffffff,
         emissive: 0xffffff,
-        emissiveIntensity: 100,
+        emissiveIntensity: 80,
     });
     const star = new THREE.Mesh(geometry, material);
     const [x, y, z] = Array(3)
@@ -76,8 +81,6 @@
         .map(() => THREE.MathUtils.randFloatSpread(200));
 
     star.position.set(x, y, z);
-	star.velocity = 0;
-	star.acceleration = 0.02;
     scene.add(star);
 }
 
@@ -108,6 +111,7 @@ loader.load(
     	// called when resource is loaded
 	function ( object2 ) {
 		henzo = object2;
+		henzo.name= 'HenzoMesh';
 		henzo.position.x = -2;
         henzo.position.y = 0;
         henzo.position.z = 0;
@@ -136,6 +140,7 @@ loader.load(
 			bumpMap : meshbumpmap});
 				const geometry = new THREE.SphereGeometry(1, 256, 256);
 			let earthMesh = new THREE.Mesh(geometry, material);
+			earthMesh.name= 'itsEarth';
     		earthMesh.position.x = -4;
    			 earthMesh.position.y = 3;
    			 earthMesh.position.z = 0;
@@ -171,14 +176,13 @@ loader.load(
 				earthMesh.position.x =  trig2['r'] * trig2['x'];
    				earthMesh.position.y =  trig2['r'] * trig2['y'];
    				earthMesh.position.z =  trig2['r'] * trig2['z'];
-				
-				if( stephan ){
+			
+				   if( stephan ){
 				stephan.rotation.y += 0.001;
 				stephan.rotation.x += 0.0002;}
 				if (henzo) {
 				henzo.rotation.y += 0.002;
 				henzo.rotation.x += 0.002;}
-
 
 				controls.update ();
 
