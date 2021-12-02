@@ -8,7 +8,7 @@ body{
 }
 .btn-1{
 	position: absolute;
-	top: 30px;
+	center: 0px;
 	text-align: center;
 	display:block;
 }
