@@ -9,6 +9,7 @@ body{
 .btn-1{
 	position: absolute;
 	top: 30px;
+	position:center;
 	width: 100%;
 	text-align: center;
 	display:block;
