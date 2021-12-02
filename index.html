@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>HENRY AND STEPHANNNN</title>
+		<title>Henry & Stephan Headspace</title>
 		<meta charset="utf-8">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,14 +14,18 @@
 			<a href="http://www.henryandstephan.com" class="btn-1">Do not press</a></div>
 	</div>
 
-	<ul>
-		<li><a href="www.henryandstephan.com"> Enter</a></li>
-		<li><a href="#spin">Spin</a></li>
-		<li style="float:right"><button onclick="getElementById('button?').innerHTML=Date()">Time?</button>
-			
-	 </a></li>
+	<footer class="taskbar">
+	
+	  
 
-	  </ul>
+	  <div class="row" style="margin-right: 0px;">
+		<div class="col-8">
+			<a href="https://www.henryandstephan.com" class="btn start-button"><img src="/users-1.png" class="icon-16">Portfolio</a>
+			<a href="https://www.henryandstephan.com" class="btn start-button"><img src="/directory_folder_options-5.png" class="icon-16"> Email</a>
+		</div>
+	
+	</div>
+</footer>
 	<script type="module">
 			import * as THREE from 'https://cdn.skypack.dev/three@0.129.0/build/three.module.js';
 			import {OrbitControls} from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js';
@@ -31,11 +35,11 @@
 			import { UnrealBloomPass } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/postprocessing/UnrealBloomPass.js'
 			let camera, controls, scene, renderer, stephan, henzo, starGeo, star,
 			composer;
-
+	
 			
 			scene = new THREE.Scene();
-			const spaceTexture = new THREE.TextureLoader().load('spacen.jpg');
-			scene.background = spaceTexture;
+		// const spaceTexture = new THREE.TextureLoader().load('spacen.jpg');
+		//  scene.background = spaceTexture;
 			scene.fog = new THREE.FogExp2 (0x000000, 0.02)
 			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 			window.addEventListener('resize', () => {
@@ -49,12 +53,21 @@
 
 
 			controls = new OrbitControls( camera, renderer.domElement );
-			controls.listenToKeyEvents( window );
 
+			//controls.listenToKeyEvents( window );
+
+			controls.autoRotate = true;
 			controls.enableDamping = true;
 			controls.dampingFactor = 0.05;
+			controls.addEventListener() 
+				if (controls.AutoRotate)
+  controls.autoRotate = false;
+  controls.autoRotateSpeed = 1.2 ;
+			
 
-			camera.position.z = -5;
+		
+
+			camera.position.z = -8;
 
 			const bloomLayer = new THREE.Layers();
 			bloomLayer.set( starGeo);
@@ -160,19 +173,29 @@ loader.load(
 
 			const directionallight = new THREE.DirectionalLight(0xffffff, 1);
 			directionallight.position.set(0,50,3);
-			directionallight.target.position.set (0,0,0);
+			directionallight.target.position .set (0,0,0);
 
 			const ambientlight = new THREE.AmbientLight( 0xe5fafa, 0.8);
  
+		
 			scene.add(directionallight, ambientlight);
 			let theta = 0;
 			const dtheta = 2 * Math.PI / 400;
+			
+			//const group = new THREE.Group();
+			//group.add(stephan,henzo);
+			//scene.add(group);
+	
+			var clock = new THREE.Clock();
+			
 
-			const animate = function () {
+			function animate () {
 				requestAnimationFrame( animate );
-
+			
+				renderer.render( scene, camera );
 				earthMesh.rotation.x += 0.01;
 				earthMesh.rotation.y += 0.01;
+				
 
 				theta += dtheta;
 				const trigs =
@@ -185,21 +208,44 @@ loader.load(
 				earthMesh.position.x =  trig2['r'] * trig2['x'];
    				earthMesh.position.y =  trig2['r'] * trig2['y'];
    				earthMesh.position.z =  trig2['r'] * trig2['z'];
-			
+			let t = clock.getElapsedTime;
+
 				   if( stephan ){
 				stephan.rotation.y += 0.001;
-				stephan.rotation.x += 0.0002;}
+				stephan.rotation.x += 0.0002;
+		}
 				if (henzo) {
-				henzo.rotation.y += 0.002;
-				henzo.rotation.x += 0.002;}
+				henzo.rotation.y += 0.0004;
+				henzo.rotation.x += 0.002 ;}
+				
+		const mouse = {
+				x: undefined,
+				y: undefined
+			}
 
-				controls.update ();
+			
 
-				renderer.render( scene, camera );
+			addEventListener ('mouseclick', () => {
+				mouse.x=(event.clientX/innerWidth)
+				*2-1
+				mouse.y = - (event.clientY/innerHeight)
+				* 2 + 1
+				console.log(mouse)
+			})
+					
+		
+			
+
+			
+
+				controls.update();
+
+
 			};
 
 			animate();
 	</script>
 </body>
 </html>
+
 
